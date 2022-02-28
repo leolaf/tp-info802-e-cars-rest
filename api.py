@@ -4,6 +4,10 @@ from flask_restful import Resource, Api
 app = Flask(__name__)
 api = Api(app)
 
+class (Resource):
+	def get(self):
+		return "done"
+
 class CalculTempsParcours(Resource):
 	def get(self,autonomyStr,chargeTimeStr,kmsStr,averageSpeedStr):
 		autonomy = int(autonomyStr) # km
@@ -26,6 +30,7 @@ class CalculTempsParcours(Resource):
 		return res
 
 
+api.add_resource(Home, "/")
 api.add_resource(CalculTempsParcours, "/Time/<autonomyStr>/<chargeTimeStr>/<kmsStr>/<averageSpeedStr>")
 
 if __name__ == "__main__":
