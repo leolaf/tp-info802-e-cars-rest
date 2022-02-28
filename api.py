@@ -23,10 +23,12 @@ class CalculTempsParcours(Resource):
 		time += kms/averageSpeed
 		timeApproch = int(round(time,0))
 		res = "A peu pres "
-		if(timeApproch >= 60):
-			heures = int(timeApproch/60)
-			minutes = int(timeApproch%60)
-		res+=str(heures)+"h"+str(minutes)+"min"
+		heures = int(timeApproch/60)
+		if(heures > 0):
+			res+=str(heures)+"h"
+		minutes = int(timeApproch%60)
+		if(minutes > 0):
+			res +=str(minutes)+"min"
 		return res
 
 
