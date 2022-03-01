@@ -1,7 +1,6 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 import sys
-import settings
 
 
 class UnicodeApi(Api):
