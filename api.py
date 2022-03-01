@@ -1,8 +1,21 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
+import sys
+import settings
+
+
+class UnicodeApi(Api):
+	def __init__(self, *args, **kwargs):
+		super(UnicodeApi, self).__init__(*args, **kwargs)
+		self.app.config['RESTFUL_JSON'] = {
+			'ensure_ascii': False
+		}
+		self.representations = {
+			'application/json; charset=utf-8': output_json,
+		}
 
 app = Flask(__name__)
-api = Api(app)
+api = UnicodeApi(app)
 
 class Home(Resource):
 	def get(self):
@@ -36,6 +49,8 @@ api.add_resource(Home, "/")
 api.add_resource(CalculTempsParcours, "/Time/<autonomyStr>/<chargeTimeStr>/<kmsStr>/<averageSpeedStr>")
 
 if __name__ == "__main__":
+	reload(sys)
+	sys.setdefaultencoding('utf-8')
 	app.run(debug=True)
 
 """
