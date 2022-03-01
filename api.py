@@ -22,7 +22,7 @@ class CalculTempsParcours(Resource):
 			kmsLast -= autonomy
 		time += kms/averageSpeed
 		timeApproch = int(round(time,0))
-		res = "A peu pres "
+		res = "À peu près "
 		heures = int(timeApproch/60)
 		if(heures > 0):
 			res+=str(heures)+"h"
